@@ -15,10 +15,10 @@ interface Props {
   price: number;
   image: string;
   inStock: boolean;
-  uid: string;
+  // uid: string;
 }
 
-const ProductCard = ({ name, price, image, inStock, uid }: Props) => {
+const ProductCard = ({ name, price, image, inStock }: Props) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [quant, setQuant] = useState(0);
   return (

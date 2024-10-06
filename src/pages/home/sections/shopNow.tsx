@@ -51,7 +51,6 @@ const ShopNow = () => {
             price={item.price}
             image={item.image}
             inStock={item.inStock}
-            uid={item.uid}
           />
         ))}
       </div>

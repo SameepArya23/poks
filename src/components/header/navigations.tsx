@@ -38,8 +38,9 @@ const categories = [
 ];
 
 export function HeaderNavigationMenu() {
-  const url =
-    "https://i.pinimg.com/736x/dd/18/c2/dd18c267e80d2e3fe2f48b21bc826003.jpg";
+  const [url] = React.useState(
+    "https://i.pinimg.com/736x/dd/18/c2/dd18c267e80d2e3fe2f48b21bc826003.jpg"
+  );
   const [index, setIndex] = React.useState<{
     name: string;
     cover: string;
@@ -60,14 +61,8 @@ export function HeaderNavigationMenu() {
           <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
-              <li
-                className={`row-span-${categories.length} overflow-hidden rounded-md`}
-              >
-                <img
-                  src={index?.cover ?? url}
-                  alt={index?.name}
-                  className="w-full h-full object-cover object-center rounded-md"
-                />
+              <li className={`row-span-4 overflow-hidden rounded-md`}>
+                <img src={index?.cover ?? url} alt={index?.name} className="w-full h-full object-cover object-center rounded-md" />
               </li>
               {categories.map((item, idx) => (
                 <ListItem
@@ -83,7 +78,10 @@ export function HeaderNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="/" className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink
+            href="/"
+            className={navigationMenuTriggerStyle()}
+          >
             About
           </NavigationMenuLink>
         </NavigationMenuItem>

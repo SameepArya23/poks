@@ -9,6 +9,7 @@ import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Icons } from "../Icons";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   name: string;
@@ -21,6 +22,13 @@ interface Props {
 const ProductCard = ({ name, price, image, inStock }: Props) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [quant, setQuant] = useState(0);
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(`/products/${name.replace(/\s+/g, "-")}`, {
+      state: { name, price, image, inStock },
+    });
+    location.reload();
+  };
   return (
     <Card className="p-2 cursor-pointer max-w-64">
       <CardContent className="group p-0 overflow-hidden rounded-md relative">
@@ -45,7 +53,9 @@ const ProductCard = ({ name, price, image, inStock }: Props) => {
               >
                 -
               </Button>
-              <h1 className="text-color-100 text-lg bg-primary px-4 py-1 rounded-md z-10">{quant}</h1>
+              <h1 className="text-primary-foreground text-lg bg-primary px-4 py-1 rounded-md z-10">
+                {quant}
+              </h1>
               <Button
                 className="w-full z-10 text-md"
                 onClick={() => setQuant(quant + 1)}
@@ -63,7 +73,7 @@ const ProductCard = ({ name, price, image, inStock }: Props) => {
         </div>
         <div className="w-full h-full z-0 absolute inset-0 bg-primary transition-all ease opacity-0 group-hover:opacity-30"></div>
       </CardContent>
-      <CardFooter className="p-3">
+      <CardFooter className="p-3" onClick={handleNavigate}>
         <div>
           <TooltipProvider>
             <Tooltip>

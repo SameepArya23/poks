@@ -67,7 +67,7 @@ export function HeaderNavigationMenu() {
               {categories.map((item, idx) => (
                 <ListItem
                   key={idx}
-                  href="/"
+                  href={"/products"}
                   title={item.name}
                   onMouseEnter={() => setIndex(item)}
                 >

@@ -31,6 +31,7 @@ export default {
         },
         color: {
           DEFAULT: "var(--text-100)",
+          50: "var(--text-50)",
           100: "var(--text-100)",
           200: "var(--text-200)",
           300: "var(--text-300)",
@@ -50,7 +51,7 @@ export default {
         },
         success: {
           DEFAULT: "var(--success)",
-          // foreground: "var(--success-foreground)",
+          foreground: "var(--success-foreground)",
         },
         border: "var(--border)",
         input: "var(--input)",

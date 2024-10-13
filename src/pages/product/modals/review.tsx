@@ -36,7 +36,7 @@ const Review = () => {
           </div>
           <div className="grid w-full max-w-sm items-center gap-1.5">
             <Label htmlFor="fullname">Full name</Label>
-            <Input id="fullname" value="John Doe" className="col-span-3" />
+            <Input id="fullname" placeholder="John Doe" className="col-span-3" />
           </div>
           <div className="grid w-full max-w-sm items-center gap-1.5">
             <Label htmlFor="review">Review</Label>

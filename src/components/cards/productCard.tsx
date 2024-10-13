@@ -16,7 +16,6 @@ interface Props {
   price: number;
   image: string;
   inStock: boolean;
-  // uid: string;
 }
 
 const ProductCard = ({ name, price, image, inStock }: Props) => {
@@ -30,7 +29,7 @@ const ProductCard = ({ name, price, image, inStock }: Props) => {
     location.reload();
   };
   return (
-    <Card className="p-2 cursor-pointer max-w-64">
+    <Card className="p-2 cursor-pointer w-64">
       <CardContent className="group p-0 overflow-hidden rounded-md relative">
         <img
           src={image}

@@ -19,16 +19,16 @@ const Breadcrumbs: FC<{ paths: pathProps[] }> = ({ paths }) => {
         <BreadcrumbList>
           {paths.map((item, key) =>
             paths.length - 1 != key ? (
-              <>
-                <BreadcrumbItem key={key}>
+              <div className="flex items-center gap-2" key={key}>
+                <BreadcrumbItem>
                   <BreadcrumbLink className="text-md" href={item.path}>
                     {item.pathname}
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
-              </>
+              </div>
             ) : (
-              <BreadcrumbItem>
+              <BreadcrumbItem key={key}> 
                 <BreadcrumbPage className="text-md">
                   {item.pathname}
                 </BreadcrumbPage>

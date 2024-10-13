@@ -1,12 +1,12 @@
 import Product from "@/pages/product/product";
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-
+import SuspenseContainer from "./suspense";
 const Layout = lazy(() => import("../components/layout/layout"));
 const SignIn = lazy(() => import("../pages/auth/signIn"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
 const Home = lazy(() => import("../pages/home/home"));
-// const Product = lazy(() => import("../pages/product/product"));
+const Listing = lazy(() => import("../pages/listing/listing"));
 
 const router = createBrowserRouter([
   {
@@ -23,11 +23,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <SuspenseContainer>
+            <Home />
+          </SuspenseContainer>
+        ),
       },
       {
         path: "/products/:prod",
-        element: <Product />,
+        element: (
+          <SuspenseContainer>
+            <Product />
+          </SuspenseContainer>
+        ),
+      },
+      {
+        path: "/products",
+        element: (
+          <SuspenseContainer>
+            <Listing />
+          </SuspenseContainer>
+        ),
       },
     ],
   },

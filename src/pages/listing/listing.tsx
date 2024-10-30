@@ -146,7 +146,7 @@ const Listing = () => {
           ]}
         />
       </section>
-      <section className="py-2 w-full flex justify-start gap-12">
+      <section className="py-2 w-full flex justify-start gap-12 px-32 max-md:px-0">
         {!isMobile && <Filters />}
         <div className="w-full">
           <div className="flex items-center justify-between mb-4 px-32 max-md:px-10">

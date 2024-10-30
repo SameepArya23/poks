@@ -38,14 +38,14 @@ const products = [
 
 const SimilarProducts = () => {
   return (
-    <section className="p-8 flex flex-col items-start gap-10">
-      <div>
+    <section className="p-8 flex flex-col items-start gap-10 max-md:p-0">
+      <div className="max-sm:p-6">
         <h3 className="text-2xl font-bold text-color-500">
           You might also like
         </h3>
         <h5 className="text-sm text-color-100">SIMILAR PRODUCTS</h5>
       </div>
-      <div className="flex gap-8">
+      <div className="flex flex-wrap justify-center">
         {products.map((item, idx) => (
           <ProductCard
             key={idx}

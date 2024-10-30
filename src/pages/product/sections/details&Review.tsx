@@ -91,11 +91,11 @@ const DetailsReview = () => {
 
   const arrLength = load ? reviews : reviews.slice(0, 3);
   return (
-    <section className="w-full flex gap-8 my-12">
-      <div className="">
+    <section className="w-full flex gap-8 my-12 px-32 py-2 max-lg:px-26 max-md:px-6 max-sm:px-6 max-md:flex-col">
+      <div className="max-md:flex">
         <Button
           variant={"ghost"}
-          className={`w-48 flex justify-start items-center gap-2 bg-${
+          className={`w-48 max-md:w-max flex justify-start items-center gap-2 bg-${
             tab == "details" && "muted"
           }`}
           onClick={() => setTab("details")}
@@ -104,7 +104,7 @@ const DetailsReview = () => {
         </Button>
         <Button
           variant={"ghost"}
-          className={`w-48 flex justify-start items-center gap-2 bg-${
+          className={`w-48 max-md:w-max flex justify-start items-center gap-2 bg-${
             tab == "reviews" && "muted"
           }`}
           onClick={() => setTab("reviews")}

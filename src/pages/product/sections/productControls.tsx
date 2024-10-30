@@ -15,15 +15,15 @@ const ProductControls = () => {
   const colors = ["#A3BEF8", "#FFD58A", "#83B18B"];
   const sizes = ["s", "m", "l", "xl", "xxl"];
   return (
-    <section className="py-2 flex gap-x-56">
+    <section className="py-2 flex justify-center flex-wrap gap-x-56 px-32 py-2 max-lg:px-22 max-md:px-6 max-sm:px-6">
       <div className="overflow-hidden rounded-md">
         <img
           src={state?.image}
           alt=""
-          className="w-[26rem] h-[36rem] object-cover object-center rounded-md"
+          className="w-[26rem] max-md:w-18 object-cover object-center rounded-md"
         />
       </div>
-      <div>
+      <div className="mt-10">
         <div className="flex gap-20">
           <h1 className="text-2xl font-semibold">{state?.name}</h1>
           <Share />

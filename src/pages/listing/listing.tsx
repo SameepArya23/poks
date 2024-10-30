@@ -151,35 +151,37 @@ const Listing = () => {
         <div className="w-full">
           <div className="flex items-center justify-between mb-4">
             <p className="text-md text-color-100">Showing 1-9 of 36 results.</p>
-            <Select>
-              <SelectTrigger className="max-w-[180px]">
-                <SelectValue placeholder="SORT BY" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Latest">Latest</SelectItem>
-                <SelectItem value="Price (Low to High)">
-                  Price (Low to High)
-                </SelectItem>
-                <SelectItem value="Price (High to Low)">
-                  Price (High to Low)
-                </SelectItem>
-              </SelectContent>
-            </Select>
-            {isMobile && (
-              <Drawer>
-                <DrawerTrigger>
-                  <FilterIcon size={18} />
-                </DrawerTrigger>
-                <DrawerContent>
-                  <DrawerHeader>
-                    <DrawerTitle>Filters</DrawerTitle>
-                  </DrawerHeader>
-                  <DrawerFooter>
-                    <Filters />
-                  </DrawerFooter>
-                </DrawerContent>
-              </Drawer>
-            )}
+            <div className="flex items-center gap-5">
+              <Select>
+                <SelectTrigger className="max-w-32">
+                  <SelectValue placeholder="SORT BY" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Latest">Latest</SelectItem>
+                  <SelectItem value="Price (Low to High)">
+                    Price (Low to High)
+                  </SelectItem>
+                  <SelectItem value="Price (High to Low)">
+                    Price (High to Low)
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              {isMobile && (
+                <Drawer>
+                  <DrawerTrigger>
+                    <FilterIcon size={18} />
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Filters</DrawerTitle>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Filters />
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              )}
+            </div>
           </div>
           <div className="flex justify-center gap-8 flex-wrap">
             {products.map((item, idx) => (

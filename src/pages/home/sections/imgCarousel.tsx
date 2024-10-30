@@ -45,7 +45,6 @@ const ImgCarousel = () => {
         }),
       ]}
       className="w-full relative"
-      style={{ height: "28rem" }}
     >
       <CarouselContent
         onMouseEnter={() => setIsHover(true)}
@@ -53,8 +52,7 @@ const ImgCarousel = () => {
       >
         {images.map((item, index) => (
           <CarouselItem
-            className="object-cover object-center"
-            style={{ height: "28rem" }}
+            style={{ maxHeight: "40rem" }}
             key={index}
           >
             {isHover && (
@@ -69,7 +67,7 @@ const ImgCarousel = () => {
             <img
               src={item.image}
               alt={item.image}
-              className="w-full absolute -inset-y-1/3"
+              className="w-full h-full object-cover object-center"
             />
           </CarouselItem>
         ))}

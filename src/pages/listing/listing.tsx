@@ -1,6 +1,5 @@
 import Breadcrumbs from "@/components/breadcrumbs/breadcrumbs";
 import ProductCard from "@/components/cards/productCard";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -8,16 +7,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Slider } from "@/components/ui/slider";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import Filters from "./section/filters";
+import { useMediaQuery } from "@/components/hooks/use-media-query";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { useState } from "react";
+  Drawer,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { FilterIcon } from "lucide-react";
 
 const products = [
   {
@@ -135,11 +135,9 @@ const products = [
 ];
 
 const Listing = () => {
-  const categories = ["Men", "Women", "Unisex", "Hoodies", "Jeans", "Shirt"];
-  const sizes = ["s", "m", "l", "xl", "xxl"];
-  const [priceFilter, setPriceFilter] = useState(0);
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <div className="flex flex-col items-center px-32 py-2">
+    <div className="flex flex-col items-center px-32 py-2 max-md:px-10 max-md:px-5">
       <section className="py-2 self-start">
         <Breadcrumbs
           paths={[
@@ -149,66 +147,9 @@ const Listing = () => {
         />
       </section>
       <section className="py-2 w-full flex justify-start gap-12">
-        <div className="w-60 h-max rounded-sm border-2 border-color-50 p-3">
-          <div>
-            <h3 className="text-xl text-color-400 font-semibold">Categories</h3>
-            <div className="mt-4 flex flex-col gap-5">
-              {categories.map((item, key) => (
-                <div key={key}>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id={item} />
-                    <label
-                      htmlFor={item}
-                      className="text-md leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {item}
-                    </label>
-                  </div>
-                  <Separator className="mt-3" />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-5">
-            <h3 className="text-xl text-color-400 font-semibold">Size</h3>
-            <ToggleGroup
-              type="single"
-              variant={"outline"}
-              className="justify-start mt-2"
-            >
-              {sizes.map((size, key) => (
-                <ToggleGroupItem
-                  className="data-[state=on]:border-color-300 data-[state=on]:border-2"
-                  value={`${size}`}
-                  aria-label={`Toggle ${size}`}
-                  key={key}
-                >
-                  <span>{size.toLocaleUpperCase()}</span>
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
-          </div>
-          <div className="my-4">
-            <h3 className="text-xl text-color-400 font-semibold">Price</h3>
-            <div className="mt-4 flex flex-col gap-5">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Slider
-                      defaultValue={[0]}
-                      onValueChange={(e) => setPriceFilter(e[0])}
-                      max={1000}
-                      step={1}
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>${priceFilter}</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-          </div>
-        </div>
+        {!isMobile && <Filters />}
         <div className="w-full">
-          <div className="flex justify-between mb-4">
+          <div className="flex items-center justify-between mb-4">
             <p className="text-md text-color-100">Showing 1-9 of 36 results.</p>
             <Select>
               <SelectTrigger className="max-w-[180px]">
@@ -224,8 +165,23 @@ const Listing = () => {
                 </SelectItem>
               </SelectContent>
             </Select>
+            {isMobile && (
+              <Drawer>
+                <DrawerTrigger>
+                  <FilterIcon size={18} />
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Filters</DrawerTitle>
+                  </DrawerHeader>
+                  <DrawerFooter>
+                    <Filters />
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
+            )}
           </div>
-          <div className="flex gap-8 flex-wrap">
+          <div className="flex justify-center gap-8 flex-wrap">
             {products.map((item, idx) => (
               <ProductCard
                 key={idx}

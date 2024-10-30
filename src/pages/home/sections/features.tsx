@@ -22,7 +22,7 @@ const content = [
 
 const Features = () => {
   return (
-    <section className="py-14 flex justify-center gap-20">
+    <section className="py-14 flex justify-center flex-wrap gap-20">
       {content.map((item, idx) => (
         <div
           style={{ maxWidth: "18rem" }}

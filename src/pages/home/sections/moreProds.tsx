@@ -72,7 +72,7 @@ const MoreProds = () => {
           <TabsTrigger value="latest">Latest</TabsTrigger>
         </TabsList>
         <TabsContent value="featured">
-          <div className="flex gap-8">
+          <div className="flex flex-wrap justify-center gap-8">
             {featured.map((item, idx) => (
               <ProductCard
                 key={idx}

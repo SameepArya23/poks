@@ -2,8 +2,8 @@ import { Icons } from "../Icons";
 
 const Footer = () => {
   return (
-    <div className="bg-secondary">
-      <div className="min-h-72 flex justify-around items-center border-t-2 border-gray-100">
+    <div className="bg-secondary flex justify-center flex-col max-md:items-center">
+      <div className="min-h-72 flex justify-around items-center border-t-2 border-gray-100 max-md:flex-col max-md:items-start max-md:gap-12 max-md:mb-8">
         <div>
           <h1 className="logo-txt">PAYOAKS</h1>
           <p className="w-52 text-color-100">
@@ -68,7 +68,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <span className="p-4 mx-48 flex justify-center border-t-2 border-gray-200">
+      <span className="p-4 mx-48 flex justify-center border-t-2 border-gray-200 max-md:w-full">
         © 2025 PAYOAKS. All rights reserved.
       </span>
     </div>

@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import * as React from "react";
 
-const categories = [
+export const categories = [
   {
     name: "Hoodies",
     cover:

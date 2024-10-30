@@ -38,12 +38,12 @@ const products = [
 
 const ShopNow = () => {
   return (
-    <section className="p-8 flex flex-col items-center gap-10">
+    <section className="flex flex-col items-center gap-10">
       <div>
         <h5 className="text-sm text-color-100">SHOP NOW</h5>
         <h3 className="text-2xl font-bold text-color-500">Best Selling</h3>
       </div>
-      <div className="flex flex-wrap justify-center gap-8">
+      <div className="flex flex-wrap justify-center">
         {products.map((item, idx) => (
           <ProductCard
             key={idx}

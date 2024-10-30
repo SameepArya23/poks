@@ -72,7 +72,7 @@ const MoreProds = () => {
           <TabsTrigger value="latest">Latest</TabsTrigger>
         </TabsList>
         <TabsContent value="featured">
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center">
             {featured.map((item, idx) => (
               <ProductCard
                 key={idx}
@@ -85,7 +85,7 @@ const MoreProds = () => {
           </div>
         </TabsContent>
         <TabsContent value="latest">
-          <div className="flex gap-8">
+          <div className="flex flex-wrap justify-center">
             {latest.map((item, idx) => (
               <ProductCard
                 key={idx}

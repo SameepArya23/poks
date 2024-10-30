@@ -137,8 +137,8 @@ const products = [
 const Listing = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <div className="flex flex-col items-center px-32 py-2 max-md:px-10 max-md:px-5">
-      <section className="py-2 self-start">
+    <div className="flex flex-col items-center py-2">
+      <section className="py-2 self-start px-32 max-md:px-10">
         <Breadcrumbs
           paths={[
             { path: "/", pathname: "Home" },
@@ -149,7 +149,7 @@ const Listing = () => {
       <section className="py-2 w-full flex justify-start gap-12">
         {!isMobile && <Filters />}
         <div className="w-full">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 px-32 max-md:px-10">
             <p className="text-md text-color-100">Showing 1-9 of 36 results.</p>
             <div className="flex items-center gap-5">
               <Select>
@@ -183,7 +183,7 @@ const Listing = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-center gap-8 flex-wrap">
+          <div className="flex justify-center flex-wrap">
             {products.map((item, idx) => (
               <ProductCard
                 key={idx}

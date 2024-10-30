@@ -29,34 +29,34 @@ const ProductCard = ({ name, price, image, inStock }: Props) => {
     location.reload();
   };
   return (
-    <Card className="p-2 cursor-pointer w-64">
+    <Card className="p-2 cursor-pointer w-64 m-4 max-sm:w-44 max-sm:m-2">
       <CardContent className="group p-0 overflow-hidden rounded-md relative">
         <img
           src={image}
           alt={""}
-          className="w-full h-72 object-cover object-center rounded-md transition-all group-hover:scale-105"
+          className="w-full h-72 object-cover object-center rounded-md transition-all group-hover:scale-105 max-sm:h-48"
         />
-        <div className="w-full p-2 flex gap-1 absolute -bottom-4 transition-all ease opacity-0 group-hover:bottom-0 group-hover:opacity-100">
+        <div className="w-full p-2 max-sm:p-1 flex gap-1 absolute -bottom-4 transition-all ease opacity-0 group-hover:bottom-0 group-hover:opacity-100">
           {quant == 0 ? (
             <Button
-              className="w-full z-10 flex justify-center items-center gap-2"
+              className="w-full z-10 flex justify-center items-center gap-2 max-sm:gap-1 max-sm:text-[12px]"
               onClick={() => setQuant(quant + 1)}
             >
               Add to cart <ShoppingCart size={16} />
             </Button>
           ) : (
-            <div className="w-full flex justify-center items-center gap-2">
+            <div className="w-full flex justify-center items-center gap-2 max-sm:gap-1">
               <Button
-                className="w-full z-10 text-md"
+                className="w-full z-10 text-md max-sm:text-[12px] max-sm:p-3"
                 onClick={() => setQuant(quant - 1)}
               >
                 -
               </Button>
-              <h1 className="text-primary-foreground text-lg bg-primary px-4 py-1 rounded-md z-10">
+              <h1 className="text-primary-foreground text-lg bg-primary px-4 py-1 rounded-md z-10 max-sm:text-[12px] max-sm:px-3">
                 {quant}
               </h1>
               <Button
-                className="w-full z-10 text-md"
+                className="w-full z-10 text-md max-sm:text-[12px] max-sm:p-3"
                 onClick={() => setQuant(quant + 1)}
               >
                 +
@@ -90,11 +90,11 @@ const ProductCard = ({ name, price, image, inStock }: Props) => {
           </TooltipProvider>
           <div className="flex gap-2">
             {inStock ? (
-              <span className="flex justify-center items-center border-2 border-color-100 rounded-full px-3 py-0 text-xs text-success">
+              <span className="flex justify-center items-center border-2 border-color-100 rounded-full px-3 py-0 text-xs text-success max-sm:text-[10px]">
                 IN STOCK
               </span>
             ) : (
-              <span className="flex justify-center items-center border-2 border-color-100 rounded-full px-3 py-0 text-xs text-destructive">
+              <span className="flex justify-center items-center border-2 border-color-100 rounded-full px-3 py-0 text-xs text-destructive max-sm:text-[10px]">
                 OUT OF STOCK
               </span>
             )}

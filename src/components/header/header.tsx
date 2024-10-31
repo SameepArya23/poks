@@ -1,10 +1,11 @@
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger
+  DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Menu } from "lucide-react";
 import { useMediaQuery } from "../hooks/use-media-query";
@@ -13,8 +14,10 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import MobileNavigation from "./mobile-navigation";
 import { HeaderNavigationMenu } from "./navigations";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const isMobile = useMediaQuery("(max-width: 768px)");
   if (isMobile) {
     return (
@@ -36,12 +39,24 @@ const Header = () => {
                     autoComplete="search"
                     autoCorrect="off"
                   />
-                  <Button variant={"ghost"} className="py-0 px-2">
-                    <Icons.cart />
-                  </Button>
-                  <Button variant={"ghost"} className="py-0 px-2">
-                    <Icons.account />
-                  </Button>
+                  <DrawerClose>
+                    <Button
+                      variant={"ghost"}
+                      className="py-0 px-2"
+                      onClick={() => navigate("/cart")}
+                    >
+                      <Icons.cart />
+                    </Button>
+                  </DrawerClose>
+                  <DrawerClose>
+                    <Button
+                      variant={"ghost"}
+                      className="py-0 px-2"
+                      // onClick={() => navigate("/cart")}
+                    >
+                      <Icons.account />
+                    </Button>
+                  </DrawerClose>
                 </div>
               </DrawerTitle>
             </DrawerHeader>
@@ -67,7 +82,11 @@ const Header = () => {
           autoComplete="search"
           autoCorrect="off"
         />
-        <Button variant={"ghost"} className="py-0 px-2">
+        <Button
+          variant={"ghost"}
+          className="py-0 px-2"
+          onClick={() => navigate("/cart")}
+        >
           <Icons.cart />
         </Button>
         <Button variant={"ghost"} className="py-0 px-2">

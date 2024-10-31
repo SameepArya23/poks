@@ -1,4 +1,4 @@
-import ProductCard from "@/components/cards/productCard";
+import ProductCard from "@/components/cards/product-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const MoreProds = () => {

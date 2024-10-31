@@ -1,5 +1,5 @@
 import Breadcrumbs from "@/components/breadcrumbs/breadcrumbs";
-import ProductCard from "@/components/cards/productCard";
+import ProductCard from "@/components/cards/product-card";
 import {
   Select,
   SelectContent,

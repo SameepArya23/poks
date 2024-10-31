@@ -7,6 +7,8 @@ const SignIn = lazy(() => import("../pages/auth/signIn"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
 const Home = lazy(() => import("../pages/home/home"));
 const Listing = lazy(() => import("../pages/listing/listing"));
+const Cart = lazy(() => import("../pages/cart/cart"));
+const Checkout = lazy(() => import("../pages/checkout/checkout"));
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,22 @@ const router = createBrowserRouter([
         element: (
           <SuspenseContainer>
             <Listing />
+          </SuspenseContainer>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <SuspenseContainer>
+            <Cart />
+          </SuspenseContainer>
+        ),
+      },
+      {
+        path: "/checkout",
+        element: (
+          <SuspenseContainer>
+            <Checkout />
           </SuspenseContainer>
         ),
       },

@@ -15,21 +15,21 @@ const ProductControls = () => {
   const colors = ["#A3BEF8", "#FFD58A", "#83B18B"];
   const sizes = ["s", "m", "l", "xl", "xxl"];
   return (
-    <section className="py-2 flex justify-center flex-wrap gap-x-56 px-32 py-2 max-lg:px-22 max-md:px-6 max-sm:px-6">
-      <div className="overflow-hidden rounded-md">
+    <section className="py-2 flex justify-center gap-x-16 px-32 py-2 max-lg:px-22 max-md:px-6 max-md:flex-col max-sm:px-6">
+      <div className="overflow-hidden rounded-md flex justify-center items-center">
         <img
           src={state?.image}
-          alt=""
+          alt="product"
           className="w-[26rem] max-md:w-18 object-cover object-center rounded-md"
         />
       </div>
       <div className="mt-10">
-        <div className="flex gap-20">
+        <div className="flex gap-8">
           <h1 className="text-2xl font-semibold">{state?.name}</h1>
           <Share />
         </div>
         <div className="flex gap-2">
-          <span className="flex justify-center items-center bg-muted text-color-300 text-lg rounded-full px-3 py-0 text-xs">
+          <span className="flex justify-center items-center bg-muted text-color-300 text-lg rounded-full text-xs">
             <StarFilledIcon fontSize={18} /> 4.2 - 54 Reviews
           </span>
           <span className="flex justify-center items-center border-2 border-color-100 rounded-full px-3 py-0 text-xs text-success">

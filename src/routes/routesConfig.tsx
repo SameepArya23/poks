@@ -9,6 +9,7 @@ const Home = lazy(() => import("../pages/home/home"));
 const Listing = lazy(() => import("../pages/listing/listing"));
 const Cart = lazy(() => import("../pages/cart/cart"));
 const Checkout = lazy(() => import("../pages/checkout/checkout"));
+const Profile = lazy(() => import("../pages/profile/profile"));
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,14 @@ const router = createBrowserRouter([
         element: (
           <SuspenseContainer>
             <Checkout />
+          </SuspenseContainer>
+        ),
+      },
+      {
+        path: "/my-account",
+        element: (
+          <SuspenseContainer>
+            <Profile />
           </SuspenseContainer>
         ),
       },

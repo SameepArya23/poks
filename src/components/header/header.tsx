@@ -22,7 +22,7 @@ const Header = () => {
   if (isMobile) {
     return (
       <div className="w-full px-10 flex justify-between items-center">
-        <h1 className="logo-txt">PAYOAKS</h1>
+        <h1 className="logo-txt cursor-pointer" onClick={()=>navigate("/home")}>PAYOAKS</h1>
         <Drawer>
           <DrawerTrigger>
             <Menu />
@@ -52,7 +52,7 @@ const Header = () => {
                     <Button
                       variant={"ghost"}
                       className="py-0 px-2"
-                      // onClick={() => navigate("/cart")}
+                      onClick={() => navigate("/my-account")}
                     >
                       <Icons.account />
                     </Button>
@@ -70,7 +70,7 @@ const Header = () => {
   }
   return (
     <div className="w-full flex justify-around items-center">
-      <h1 className="logo-txt">PAYOAKS</h1>
+      <h1 className="logo-txt cursor-pointer" onClick={()=>navigate("/home")}>PAYOAKS</h1>
       <HeaderNavigationMenu />
       <div className="flex items-center gap-6">
         <Input
@@ -89,7 +89,11 @@ const Header = () => {
         >
           <Icons.cart />
         </Button>
-        <Button variant={"ghost"} className="py-0 px-2">
+        <Button
+          variant={"ghost"}
+          className="py-0 px-2"
+          onClick={() => navigate("/my-account")}
+        >
           <Icons.account />
         </Button>
       </div>

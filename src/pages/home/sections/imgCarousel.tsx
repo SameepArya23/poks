@@ -12,6 +12,8 @@ import { useState } from "react";
 import carouselbanner1 from "../../../assets/Black and White Clean Fashion Landscape Banner.png";
 import carouselbanner2 from "../../../assets/Grey Modern New Collection Photo Collage Fashion Promotion Banner.png";
 import carouselbanner3 from "../../../assets/Black White Bold Simple Fashion Product Promotion Landscape Banner.png";
+import { useMediaQuery } from "@/components/hooks/use-media-query";
+import { useNavigate } from "react-router-dom";
 
 const images = [
   {
@@ -25,8 +27,7 @@ const images = [
     caption: "Discover Our Newest Collection Today.",
   },
   {
-    image:
-      carouselbanner3,
+    image: carouselbanner3,
     heading: "Get upto 50% off",
     caption: "Discover Our Newest Collection Today.",
   },
@@ -34,6 +35,8 @@ const images = [
 
 const ImgCarousel = () => {
   const [isHover, setIsHover] = useState(false);
+  const isSm = useMediaQuery("(max-width: 640px)");
+  const navigate = useNavigate();
   return (
     <Carousel
       opts={{
@@ -51,15 +54,18 @@ const ImgCarousel = () => {
         onMouseLeave={() => setIsHover(false)}
       >
         {images.map((item, index) => (
-          <CarouselItem
-            style={{ maxHeight: "40rem" }}
-            key={index}
-          >
+          <CarouselItem style={{ maxHeight: "40rem" }} key={index}>
             {isHover && (
-              <div className="w-full h-full px-36 flex flex-col justify-center items-start gap-1 bg-backdrop absolute top-1/2 -translate-y-1/2 z-10">
-                <h2 className="text-secondary text-4xl">{item.heading}</h2>
-                <p className="text-secondary">{item.caption}</p>
-                <Button className="flex gap-1 align-center mt-1">
+              <div className="w-full h-full px-36 flex flex-col justify-center items-start gap-1 bg-backdrop absolute top-1/2 -translate-y-1/2 z-10 max-sm:px-16">
+                <h2 className="text-secondary text-4xl max-sm:text-2xl">
+                  {item.heading}
+                </h2>
+                <p className="text-secondary max-sm:text-sm">{item.caption}</p>
+                <Button
+                  size={isSm ? "sm" : "default"}
+                  className="flex gap-1 align-center mt-1"
+                  onClick={()=>navigate("/products")}
+                >
                   View collection <ArrowRight className="w-4" />
                 </Button>
               </div>

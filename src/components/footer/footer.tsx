@@ -6,11 +6,7 @@ const Footer = () => {
       <div className="min-h-72 flex justify-around items-center border-t-2 border-gray-100 max-md:flex-col max-md:items-start max-md:gap-12 max-md:mb-8">
         <div>
           <h1 className="logo-txt">PAYOAKS</h1>
-          <p className="w-52 text-color-100">
-            DevCut is a YouTube channel for practical project-based learning.
-          </p>
           <div className="flex gap-4 mt-2">
-            <Icons.githubLogo />
             <Icons.instagramLogo />
             <Icons.youtubeLogo />
           </div>

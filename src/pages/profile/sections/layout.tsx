@@ -2,7 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { Heart, Key, ShoppingCart, Truck, UserRound } from "lucide-react";
 import { useState } from "react";
 import { SidebarNav } from "./side-nav";
-import Orders from "../tabs/Orders";
+import Orders from "../tabs/orders";
 import Wishlist from "../tabs/wishlist";
 import Address from "../tabs/address";
 import Password from "../tabs/password";

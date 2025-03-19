@@ -5,6 +5,11 @@ export interface ApiEndpoint {
 }
 
 export const apiConfig: ApiEndpoint[] = [
-  { name: "sign-in", path: "/user/login" },
-  { name: "sign-up", path: "/user/register" },
+  // auth
+  { name: "login", path: "/api/v1/users/login" },
+  { name: "register", path: "/api/v1/users/register" },
+  { name: "logout", path: "/api/v1/users/logout" },
+  // products
+  { name: "allProducts", path: "/api/v1/ecommerce/products" },
+  { name: "productById", path: "/api/v1/ecommerce/products/{productId}" },
 ];

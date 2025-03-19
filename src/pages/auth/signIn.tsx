@@ -1,48 +1,52 @@
-import { useApi } from "@/api/apiHooks";
 import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React from "react";
+import { useLogin } from "@/hooks/useAuth";
+import { useZodForm } from "@/hooks/useZodFom";
+import { login, LoginFormInputs } from "@/utils/schemas/login";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const { post } = useApi();
+  const { mutate, isPending } = useLogin();
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
-    post("sign-in", { email, password });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useZodForm({ schema: login });
+
+  const onSubmit = async (data: LoginFormInputs) => {
+    mutate(
+      { username: data.username, password: data.password },
+      { onSuccess: () => {} }
+    );
+  };
+
+  const navigate = useNavigate();
   return (
     <div
       style={{ minHeight: "100vh" }}
       className="w-full flex flex-col justify-center items-center"
     >
-      <form
-        onSubmit={onSubmit}
-        className="w-80"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="w-80">
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label className="" htmlFor="email">
-              Email
+              Username
             </Label>
             <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
+              id="username"
+              placeholder="johnDoe"
               autoCapitalize="none"
-              autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
-              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
+              disabled={isPending}
+              {...register("username")}
             />
+            {errors.username && (
+              <p style={{ color: "#e34444" }}>{errors.username.message}</p>
+            )}
           </div>
           <div className="grid gap-2">
             <Label className="" htmlFor="email">
@@ -55,12 +59,15 @@ const SignIn = () => {
               autoCapitalize="none"
               autoComplete="password"
               autoCorrect="off"
-              disabled={isLoading}
-              onChange={(e) => setPassword(e.target.value)}
+              disabled={isPending}
+              {...register("password")}
             />
+            {errors.password && (
+              <p style={{ color: "#e34444" }}>{errors.password.message}</p>
+            )}
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
+          <Button disabled={isPending} type="submit">
+            {isPending && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
             Sign In
@@ -80,16 +87,27 @@ const SignIn = () => {
       <Button
         variant="outline"
         type="button"
-        disabled={isLoading}
+        disabled={isPending}
         className="w-80"
       >
-        {isLoading ? (
+        {isPending ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Icons.google className="mr-2 h-4 w-4" />
         )}{" "}
         Google
       </Button>
+      <div className="mt-5 relative flex justify-center text-xs uppercase">
+        <span className="bg-background px-2 text-muted-foreground">
+          Don't have an account?{" "}
+          <span
+            className="bg-background px-1 text-foreground font-semibold cursor-pointer hover:underline"
+            onClick={() => navigate("/sign-up")}
+          >
+            Register here!
+          </span>
+        </span>
+      </div>
     </div>
   );
 };

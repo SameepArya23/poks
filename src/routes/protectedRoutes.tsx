@@ -1,13 +1,16 @@
+import { useAppStore } from "@/store";
 import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
 
 interface Props {
   children: ReactNode;
 }
 
 const ProtectedRoutes = ({ children }: Props) => {
-  if (location.pathname == "/") {
-    <Navigate to={"/home"} />;
+  const { access, user } = useAppStore();
+  // console.log(access, user);
+  if (access && user?.role == "USER") {
+    // <Navigate to={"/home"} />;
+    location.href = '/home'
   } else {
     return children;
   }

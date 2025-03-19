@@ -1,48 +1,59 @@
-import { useApi } from "@/api/apiHooks";
 import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React from "react";
+import { useRegister } from "@/hooks/useAuth";
+import { useZodForm } from "@/hooks/useZodFom";
+import { RegisterFormInputs, signUp } from "@/utils/schemas/register";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [name, setName] = React.useState<string>("");
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
-  const [confirmPassword, setConfirmPassword] = React.useState<string>("");
+  const { mutate, isPending } = useRegister();
 
-  const { post } = useApi();
+  const navigate = useNavigate();
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
-    post("sign-up", { name, email, password, confirmPassword });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useZodForm({ schema: signUp });
+
+  const onSubmit = async (data: RegisterFormInputs) => {
+    const { username, password, email } = data;
+    mutate(
+      { username, email, password, role: "USER" },
+      {
+        onSuccess: () => {
+          navigate("/sign-in");
+        },
+      }
+    );
+  };
+
   return (
     <div
       style={{ minHeight: "100vh" }}
       className="w-full flex flex-col justify-center items-center"
     >
-      <form onSubmit={onSubmit} className="w-80">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-80">
         <div className="grid gap-4">
           <div className="grid gap-2">
             <Label className="" htmlFor="email">
-              Name
+              Username
             </Label>
             <Input
-              id="name"
+              id="username"
               placeholder="John Doe"
               type="text"
               autoCapitalize="none"
-              autoComplete="name"
+              autoComplete="username"
               autoCorrect="off"
-              disabled={isLoading}
-              onChange={(e) => setName(e.target.value)}
+              disabled={isPending}
+              {...register("username")}
             />
+            {errors.username && (
+              <p style={{ color: "#e34444" }}>{errors.username.message}</p>
+            )}
           </div>
           <div className="grid gap-2">
             <Label className="" htmlFor="email">
@@ -55,9 +66,12 @@ const SignUp = () => {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
-              onChange={(e) => setEmail(e.target.value)}
+              disabled={isPending}
+              {...register("email")}
             />
+            {errors.email && (
+              <p style={{ color: "#e34444" }}>{errors.email.message}</p>
+            )}
           </div>
           <div className="grid gap-2">
             <Label className="" htmlFor="email">
@@ -70,9 +84,12 @@ const SignUp = () => {
               autoCapitalize="none"
               autoComplete="password"
               autoCorrect="off"
-              disabled={isLoading}
-              onChange={(e) => setPassword(e.target.value)}
+              disabled={isPending}
+              {...register("password")}
             />
+            {errors.password && (
+              <p style={{ color: "#e34444" }}>{errors.password.message}</p>
+            )}
           </div>
           <div className="grid gap-2">
             <Label className="" htmlFor="email">
@@ -81,19 +98,24 @@ const SignUp = () => {
             <Input
               id="confirmPassword"
               placeholder="Your confirmPassword"
-              type="confirmPassword"
+              type="password"
               autoCapitalize="none"
               autoComplete="confirmPassword"
               autoCorrect="off"
-              disabled={isLoading}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              disabled={isPending}
+              {...register("confirmPassword")}
             />
+            {errors.confirmPassword && (
+              <p style={{ color: "#e34444" }}>
+                {errors.confirmPassword.message}
+              </p>
+            )}
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
+          <Button disabled={isPending} type="submit">
+            {isPending && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In
+            Sign Up
           </Button>
         </div>
       </form>

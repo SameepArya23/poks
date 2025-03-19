@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -29,6 +30,13 @@ export function SidebarNav({
   setTab,
   ...props
 }: SidebarNavProps) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("user");
+    navigate("/sign-in");
+  };
   return (
     <nav
       className={cn(
@@ -42,9 +50,7 @@ export function SidebarNav({
           variant={"ghost"}
           key={item.title}
           className={cn(
-            tab.title === item.title
-              ? "bg-muted"
-              : "hover:underline",
+            tab.title === item.title ? "bg-muted" : "hover:underline",
             "justify-start"
           )}
           onClick={() => setTab(item)}
@@ -56,7 +62,7 @@ export function SidebarNav({
       <Button
         variant={"ghost"}
         className={cn("hover:underline", "justify-start")}
-        onClick={() => {}}
+        onClick={handleLogout}
       >
         <LogOut size={16} className="mr-2" />
         Logout

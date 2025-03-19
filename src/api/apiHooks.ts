@@ -54,8 +54,6 @@ export const useApi = () => {
     const endpoint = getEndpoint(name);
     const url = constructUrl(endpoint, pathParams);
 
-    console.log(url);
-
     try {
       const response = await instance.post(url, data, config);
       return response;
@@ -75,6 +73,23 @@ export const useApi = () => {
     const url = constructUrl(endpoint, pathParams);
     try {
       const response = await instance.patch(url, data, config);
+      return response;
+    } catch (error) {
+      console.error("POST request error:", error);
+      throw error;
+    }
+  };
+
+  const put = async (
+    name: string,
+    data?: object,
+    config?: object,
+    pathParams?: Record<string, string>
+  ) => {
+    const endpoint = getEndpoint(name);
+    const url = constructUrl(endpoint, pathParams);
+    try {
+      const response = await instance.put(url, data, config);
       return response;
     } catch (error) {
       console.error("POST request error:", error);
@@ -103,5 +118,5 @@ export const useApi = () => {
   };
 
 
-  return { get, post, patch, del };
+  return { get, post, patch, put, del };
 };

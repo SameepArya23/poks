@@ -1,22 +1,14 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 const instance: AxiosInstance = axios.create({
   //   baseURL: import.meta.env.VITE_SERVER_URL,
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://api.freeapi.app",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export const access = localStorage.getItem("ACCESS");
-export const user = JSON.parse(localStorage.getItem("USER") ?? "{}");
-
 instance.interceptors.request.use(
   (config) => {
-    if (access) {
-      //   config.headers["Authorization"] = `Bearer ${
-      //     useAuthStore.getState().newToken ?? access
-      //   }`;
-    }
     return config;
   },
   (error: AxiosError) => {

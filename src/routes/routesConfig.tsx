@@ -2,6 +2,7 @@ import Product from "@/pages/product/product";
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import SuspenseContainer from "./suspense";
+import ProtectedRoutes from "./protectedRoutes";
 const Layout = lazy(() => import("../components/layout/layout"));
 const SignIn = lazy(() => import("../pages/auth/signIn"));
 const SignUp = lazy(() => import("../pages/auth/signup"));
@@ -18,11 +19,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/sign-in",
-        element: <SignIn />,
+        element: (
+          <ProtectedRoutes>
+            <SuspenseContainer>
+              <SignIn />
+            </SuspenseContainer>
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/sign-up",
-        element: <SignUp />,
+        element: (
+          <ProtectedRoutes>
+            <SuspenseContainer>
+              <SignUp />
+            </SuspenseContainer>
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/home",
